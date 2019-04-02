@@ -1,7 +1,7 @@
 import {resolve, join} from 'path'
 
 export default async ({graphql, actions}) => {
-  const {createPage, createRedirect} = actions
+  const {createPage} = actions
 
   const PostTemplatePath = resolve(
     join(__dirname, '../src/templates/Post/index.js'),

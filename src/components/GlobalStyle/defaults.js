@@ -11,7 +11,6 @@ export default css`
 
   &:not(i) {
     font-family: 'futura-pt', sans-serif;
-    text-transform: uppercase;
     font-weight: 200;
     font-size: 16px;
     line-height: 24px;

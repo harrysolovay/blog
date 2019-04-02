@@ -1,11 +1,13 @@
 import {Link} from 'gatsby'
 import {css} from '@emotion/core'
 import Img from 'gatsby-image'
+import MasonryItem from '../MasonryItem'
 
 const styles = css`
   display: flex;
   flex-direction: column;
   text-decoration: none;
+
   &:hover {
     opacity: 0.875;
   }
@@ -14,15 +16,16 @@ const styles = css`
     border: 1px solid #e9e9e9;
     border-top-width: 0px;
     background-color: #fafafa;
+    padding: 16px;
   }
 
   .title {
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
   }
 
   .description {
-    font-family: 'raleway', sans-serif;
-    text-transform: none;
+    font-family: 'Raleway', sans-serif;
     font-weight: 200;
     font-size: 16px;
     line-height: 26px;
@@ -37,21 +40,20 @@ const styles = css`
 `
 
 export default ({frontmatter, fields}) => {
-  const A = props => <Link to={fields.slug} {...props} />
-
-  const {thumbnail, title, description, date} = frontmatter
+  const {slug, date} = fields
+  const {thumbnail, title, description} = frontmatter
   const {sizes} = thumbnail.childImageSharp
 
   return (
-    <div css={styles}>
-      <A>
+    <MasonryItem>
+      <Link css={styles} to={slug}>
         <Img {...{sizes}} />
-      </A>
-      <div>
-        <A className='title' children={title} />
-        <div className='description' children={description} />
-        <div className='date' children={date} />
-      </div>
-    </div>
+        <div>
+          <div className='title' children={title} />
+          <div className='description' children={description} />
+          <div className='date' children={date} />
+        </div>
+      </Link>
+    </MasonryItem>
   )
 }

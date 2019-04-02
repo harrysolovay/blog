@@ -1,18 +1,19 @@
 import {graphql} from 'gatsby'
 import {Masonry} from 'react-masonry-responsive'
 import {PostLink, GlobalStyle} from '~/components'
+import {css} from '@emotion/core'
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+    allMarkdownRemark(sort: {fields: [fields___date], order: DESC}) {
       edges {
         node {
           fields {
             slug
             key
+            date(formatString: "MMMM DD, YYYY")
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
             title
             description
             redirect
@@ -30,6 +31,10 @@ export const pageQuery = graphql`
   }
 `
 
+const styles = css`
+  padding: 8px;
+`
+
 export default ({
   data: {
     allMarkdownRemark: {edges: posts},
@@ -37,13 +42,15 @@ export default ({
 }) => (
   <>
     <GlobalStyle />
-    <Masonry
-      items={posts.map(({node}) => {
-        const {key} = node.fields
-        return {key, node: <PostLink {...node} />}
-      })}
-      minColumnWidth={256}
-      gap={0}
-    />
+    <div css={styles}>
+      <Masonry
+        items={posts.map(({node}) => {
+          const {key} = node.fields
+          return {key, node: <PostLink {...node} />}
+        })}
+        minColumnWidth={256}
+        gap={0}
+      />
+    </div>
   </>
 )

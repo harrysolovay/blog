@@ -55,12 +55,18 @@ const markdownTransformer = {
 
 const images = ['gatsby-transformer-sharp', 'gatsby-plugin-sharp']
 
-// const googleFonts = {
-//   resolve: 'gatsby-plugin-prefetch-google-fonts',
-//   options: {
-//     fonts: [{family: 'Raleway', subsets: 'sans-serif'}],
-//   },
-// }
+const googleFonts = {
+  resolve: 'gatsby-plugin-prefetch-google-fonts',
+  options: {
+    fonts: [
+      {family: 'Raleway', subsets: 'sans-serif'},
+      {family: 'Abril Fatface', subsets: 'cursive'},
+      {family: 'Permanent Marker', subsets: 'cursive'},
+      {family: 'Luckiest Guy', subsets: 'cursive'},
+      {family: 'Bowlby One SC', subsets: 'cursive'},
+    ],
+  },
+}
 
 const emotion = {
   resolve: 'gatsby-plugin-emotion',
